@@ -1,14 +1,9 @@
 # Interpretability_of_machine_learning_project
 
 ## project shedule
-1) split stratify
-2) data preprocessing
-    1. imputy
-    2. scaling
-3) eda 
-    1. outlier detection
-    2. corellation
-  
 
-  
-4) 
+Odwrócenie znaku zmiennych z korelacją przeciwną do targetu.
+binning + WoE. 
+Usuwanie na podstawie IV/znaczenia
+Dla każdej zmiennej wykres WoE od binów (czy jest monotoniczny czy też używać spline czy usunąć).
+Pipeline dla val/test
