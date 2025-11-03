@@ -2,6 +2,6 @@
 
 ## TODO
 - pkdKod
-- pipeline od WoE
+- pModel training
 
 
