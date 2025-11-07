@@ -1,6 +1,0 @@
-
-=== df ===
-Kolumny tylko w Scoring: []
-Kolumny tylko w Pipeline: []
-Różnice typów: {}
-Liczba różnic w wartościach: 3000
