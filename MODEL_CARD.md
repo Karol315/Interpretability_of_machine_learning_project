@@ -79,6 +79,37 @@ Ze względu na niską liczebność próby testowej, przyjęto **3-stopniową ska
 
 ## 4.2  Wyniki i Kalibracja (Performance - black box)
 
+### Metryki skuteczności (Zbiór Testowy) - black box, model finalny
+| Metryka | Train | Validation | Test |
+| :--- | :--- | :--- | :--- |
+| **ROC AUC** | 0.8996 | 0.7802 | 0.7215 |
+| **PR AUC** | 0.6296 | 0.3000 | 0.2462 |
+| **KS** | 0.6168 | 0.4898 | 0.3809 |
+| **Log-loss** | 0.2372 | 0.3519 | 0.3638 |
+| **Brier** | 0.0674 | 0.0976 | 0.1013 |
+
+### Kalibracja (Calibration to 4%)
+Model surowy został poddany kalibracji metodą **[Platt Scaling]** na zbiorze walidacyjnym i następnie oceniony na zbiorze testowym, aby wyrównać średnie przewidywane ryzyko do zakładanego poziomu w portfelu (4%). Następnie dostrojony został intercept.
+
+* **Brier Score (przed kalibracją):** ---
+* **Brier Score (po kalibracji):** ---
+* **ECE po kalibracji na zbiorze testowym**: 0.0508
+* **ACE po kalibracji na zbiorze testowym**:  0.0719
+
+
+| Klasa Ratingowa | Decyzja | Oczekiwane Ryzyko (RDR) |
+| :--- | :--- | :--- |
+| **A (Super Prime)** | Akceptacja (VIP / Fast track) | **0.00%** |
+| **B (Prime)** | Akceptacja (Standard) | **1.52%** |
+| **C (High Risk)** | Weryfikacja (Manual/Dodatkowe zabezpieczenie) | **3.42%** |
+| **R (Reject)** | Odrzucenie (Cut-off) | **9.18%** |
+
+
+
+
+
+
+
 
 ---
 
@@ -163,4 +194,5 @@ Aby utrzymać jakość modelu na produkcji, zaleca się comiesięczny monitoring
 1.  **PSI (Population Stability Index):** Alarm, jeśli PSI > 0.1 (oznacza zmianę profilu klientów).
 2.  **Analiza Vintage:** Porównanie `Expected PD` vs `Realized DR` po 3, 6, 9, 12 miesiącach.
 3.  **Koncentracja klas:** Monitorowanie odsetka klientów wpadających do klasy `R` (nagły wzrost oznaczaalby zbyt restrykcyjną politykę lub pogorszenie jakości wniosków).
+
 
