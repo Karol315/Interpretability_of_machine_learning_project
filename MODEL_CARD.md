@@ -62,7 +62,7 @@ Model surowy został poddany kalibracji metodą **[Platt Scaling]** na zbiorze w
 * **ECE po kalibracji na zbiorze testowym**: 0.0497
 * **ACE po kalibracji na zbiorze testowym**: 0.0493
 
-![Wykres Kalibracji](images/Reg/ecalibration_post_regression.png)
+![Wykres Kalibracji](images/Reg/calibration_post_regression.png)
 
 Na końcu zminimalizowano funkcję kosztu TP/FP tak, aby odpowiadała założonym stratom. Szczegóły w prezentacji.
 
@@ -179,8 +179,8 @@ Prawdopodobieństwo: 3.5612%.
 
 Przykład wpływu poszczególnych zmiennych na wykrywanie defaultów na podstawie shap force plot oraz lime (dla tych samych obserwacji)
 
-![shap predykcje prawdziwych defaultów](images/BlackBox/waterfall_true_default.png.png)
-![lime predykcje prawdziwych defaultów](images/BlackBox/lime_true_default.png.png)
+![shap predykcje prawdziwych defaultów](images/BlackBox/waterfall_true_default.png)
+![lime predykcje prawdziwych defaultów](images/BlackBox/lime_true_default.png)
 
 
 ### Audyt Podgrup pod względem kodów pKD.
@@ -203,6 +203,7 @@ Aby utrzymać jakość modelu na produkcji, zaleca się comiesięczny monitoring
 1.  **PSI (Population Stability Index):** Alarm, jeśli PSI > 0.1 (oznacza zmianę profilu klientów).
 2.  **Analiza Vintage:** Porównanie `Expected PD` vs `Realized DR` po 3, 6, 9, 12 miesiącach.
 3.  **Koncentracja klas:** Monitorowanie odsetka klientów wpadających do klasy `R` (nagły wzrost oznaczaalby zbyt restrykcyjną politykę lub pogorszenie jakości wniosków).
+
 
 
 
