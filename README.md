@@ -38,6 +38,7 @@ Projekt rozwiązuje kluczowy problem biznesowy: **jak połączyć wysoką skutec
 * `zbiór_8.csv` - Dane wejściowe (zanonimizowane sprawozdania finansowe).
 * `images/` - Wykresy i wizualizacje do raportu.
 * `MODEL_CARD.md` - **Pełna dokumentacja techniczna modelu.**
+* `Dane_Opis_zmiennych.pdf` - Opis danych.
 
 ---
 **Autorzy:** Piotr Wysocki, Karol Kacprzak
