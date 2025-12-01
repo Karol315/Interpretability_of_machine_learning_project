@@ -29,6 +29,9 @@ Projekt obejmuje dwa niezależne preprocessingi dla obu różnych modeli. Użyte
     * Inżynieria cech: Przekształcenia logarytmiczne, Binning zmiennych ciągłych (WoE) z wymuszeniem monotoniczności (dla regresji).
     * Selekcja cech: Testy monotniczności, VIF, usuwanie zmiennych skorelowanych, usuwanie zmiennych dających niskie feature importance
 
+![Pipeline Regresja](images/Reg/preprocessing.png)
+![Pipeline BlackBox](images/Reg/preprocessing.png)
+
 ---
 
 ## 3. Architektura Modeli
@@ -206,6 +209,7 @@ Aby utrzymać jakość modelu na produkcji, zaleca się comiesięczny monitoring
 1.  **PSI (Population Stability Index):** Alarm, jeśli PSI > 0.1 (oznacza zmianę profilu klientów).
 2.  **Analiza Vintage:** Porównanie `Expected PD` vs `Realized DR` po 3, 6, 9, 12 miesiącach.
 3.  **Koncentracja klas:** Monitorowanie odsetka klientów wpadających do klasy `R` (nagły wzrost oznaczaalby zbyt restrykcyjną politykę lub pogorszenie jakości wniosków).
+
 
 
 
