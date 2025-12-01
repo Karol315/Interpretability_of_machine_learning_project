@@ -151,6 +151,7 @@ Przeprowadzono analizę przypadków (Case Studies) przy użyciu interpretacji lo
 | **wsk_pokrycie_wyd_fin_gotowkowe_1** | 0.00 | -0.387766 | 0.460986 | -0.178755 |
 | **wsk_poziom_kapitalu_obrotowego_netto** | 168,278.04 | 0.131028 | 0.592846 | 0.077680 |
 | **wsk_zwrot_aktywa_trwale** | 31,060.57 | 0.080247 | 0.562389 | 0.045130 |
+
 Przewidziane prawdopodobieństwo defaultu dla klienta to 6.9134%. Klientów klasyfikujemy jako takich, którzy spłacą poniżej 6.1%. Na podstawie analizy what-if widać, że po zmianie wskaźniku kapitału własnego poniżej 3.2 klient wpada do "lepszego koszyka". Zmienia to jego prawdopodobieństwo na 3.8219%.
 
 * **Przypadek graniczny2:** Klient, któremu udzielamy kredytu, ale wymaga monitoringu
@@ -162,6 +163,7 @@ Przewidziane prawdopodobieństwo defaultu dla klienta to 6.9134%. Klientów klas
 | **wsk_poziom_kapitalu_obrotowego_netto** | 36,233.06 | 0.379490 | 0.592846 | 0.224979 |
 | **wsk_pokrycie_wyd_fin_gotowkowe_1** | 46.49 | -0.278300 | 0.460986 | -0.128293 |
 | **wsk_zwrot_aktywa_trwale** | 313.2874 | -0.210625 | 0.562389 | -0.118453 |
+
 Przewidziane prawdopodobieństwo: 5.7179%, jednak po zmianie na wskaźnika poziomu kapitału obrotowego netto na 9500 (ok. poniżej 10000) spada w gorszy próg, co spowoduje klasyfikację jako default.
 
 * **Przypadek neutralny z klientem, który wygląda bezpiecznie**:
@@ -173,6 +175,7 @@ Przewidziane prawdopodobieństwo: 5.7179%, jednak po zmianie na wskaźnika pozio
 | **wsk_pokrycie_wyd_fin_gotowkowe_1** | -155.080904 | 0.708918 | 0.460986 | 0.326802 |
 | **wsk_mnoznik_kap_wl** | 2.6286 | -0.085825 | 1.141125 | -0.097937 |
 | **Aktywa_trwale** | 211,624.31 | -0.059951 | 0.768090 | -0.046048 |
+
 Prawdopodobieństwo: 3.5612%.
 
 ### Lokalna - BlackBox
@@ -203,6 +206,7 @@ Aby utrzymać jakość modelu na produkcji, zaleca się comiesięczny monitoring
 1.  **PSI (Population Stability Index):** Alarm, jeśli PSI > 0.1 (oznacza zmianę profilu klientów).
 2.  **Analiza Vintage:** Porównanie `Expected PD` vs `Realized DR` po 3, 6, 9, 12 miesiącach.
 3.  **Koncentracja klas:** Monitorowanie odsetka klientów wpadających do klasy `R` (nagły wzrost oznaczaalby zbyt restrykcyjną politykę lub pogorszenie jakości wniosków).
+
 
 
 
