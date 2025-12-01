@@ -116,7 +116,7 @@ Model surowy został poddany kalibracji metodą **[Platt Scaling]** na zbiorze w
 ## 5. Wyjaśnialność (Explainability & Interpretability)
 ### Globalna - regresja
 
-![Wykres ważności cech (udział logitów)](images/importance_regression.png)
+![Wykres ważności cech (udział logitów)](images/Reg/importance_regression.png)
 
 Ponadto sprofilowany bin dla wskaźnika mnożnika kapitału własnego:
 | Przedział_Biznesowy | WoE |
@@ -136,9 +136,9 @@ Pozostałe zmienne:
 
 ### Globalna (Co napędza model?) - BlackBox
 Analiza **SHAP Feature Importance** wskazała 5 kluczowych cech:
-1.  **[Cecha 1]:** [Krótki opis wpływu, np. wysoki dochód obniża ryzyko].
-2.  **[Cecha 2]:** ...
-3.  **[Cecha 3]:** ...
+1.  **wsk_struktury_kapitalu:** niskie wartości sprzyjają wykrywaniu defaultów.
+2.  **wsk_finansowania_majatku_kapitalem:** wysokie wartości zmniejszają prawdopodobieństwo defaultu
+3.  **wsk_mnoznik_kap_wl:** wysokie wartości zwiększają prawdopodobieństwo defaultu
 
 ### Lokalna (Dlaczego ten klient?) - regresja logistyczna
 Przeprowadzono analizę przypadków (Case Studies) przy użyciu interpretacji logitów oraz analizy what-if:
@@ -177,7 +177,16 @@ Prawdopodobieństwo: 3.5612%.
 
 ### Lokalna - BlackBox
 
+Przykład wpływu poszczególnych zmiennych na wykrywanie defaultów na podstawie shap force plot oraz lime (dla tych samych obserwacji)
+
+![shap predykcje prawdziwych defaultów](images/BlackBox/waterfall_true_default.png.png)
+![lime predykcje prawdziwych defaultów](images/BlackBox/lime_true_default.png.png)
+
+
 ### Audyt Podgrup pod względem kodów pKD.
+
+dla danych ograniczonych do jednej wartości zmiennej pkdKod wykresy wpływu poszczególnych wartości cech na predykcje modelu są zbliżone do wykresów uzyskanych dla całych danych - model ocenia ogolne warunki funkcjonowania podmiotów (szczegóły prezentacja)
+
 
 ---
 
@@ -194,5 +203,6 @@ Aby utrzymać jakość modelu na produkcji, zaleca się comiesięczny monitoring
 1.  **PSI (Population Stability Index):** Alarm, jeśli PSI > 0.1 (oznacza zmianę profilu klientów).
 2.  **Analiza Vintage:** Porównanie `Expected PD` vs `Realized DR` po 3, 6, 9, 12 miesiącach.
 3.  **Koncentracja klas:** Monitorowanie odsetka klientów wpadających do klasy `R` (nagły wzrost oznaczaalby zbyt restrykcyjną politykę lub pogorszenie jakości wniosków).
+
 
 
