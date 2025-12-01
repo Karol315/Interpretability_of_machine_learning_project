@@ -39,6 +39,7 @@ Projekt rozwiązuje kluczowy problem biznesowy: **jak połączyć wysoką skutec
 * `images/` - Wykresy i wizualizacje do raportu.
 * `MODEL_CARD.md` - **Pełna dokumentacja techniczna modelu.**
 * `Dane_Opis_zmiennych.pdf` - Opis danych.
+* `notebooks` - Wszystkie kody i implementacje.
 
 ---
 **Autorzy:** Piotr Wysocki, Karol Kacprzak
