@@ -20,7 +20,7 @@ Celem modelu jest ocena ryzyka kredytowego **podmiotów gospodarczych (przedsię
 
 * **Rozmiar próby:** 3000 obserwacji.
 * **Podział:** Train / Validation / Test w proporcji [np. 70/15/15] ze stratyfikacją wg zmiennej celu (default). Zbiór treningowy wykorzystany wyłącznie do treningu modeli. Zbiór walidacyjny do kalibracji, strojenia hiperparametrów oraz do ustalenia progu decyzyjnego. Zbiór testowy służył do sprawdzenia wyników wszystkich działań, a także interpretacji modeli.
-**Zmienne wejściowe:** Wskaźniki analizy finansowej (płynność, rentowność, zadłużenie), dane ze sprawozdań (Bilans, RZiS) oraz charakterystyka podmiotu (branża PKD, forma prawna). Szczegóły w `Dane_Opis_zmiennych.pdf`.
+* **Zmienne wejściowe:** Wskaźniki analizy finansowej (płynność, rentowność, zadłużenie), dane ze sprawozdań (Bilans, RZiS) oraz charakterystyka podmiotu (branża PKD, forma prawna). Szczegóły w `Dane_Opis_zmiennych.pdf`.
 W celu uniknięcia data leakage dane zostały podzielone przed całym preprocessingiem. Wszystkie preprocessingi obejmowały ujednolicony fit na train, następnie transform na train/val/test.
 * **Preprocessing:**
 Projekt obejmuje dwa niezależne preprocessingi dla obu różnych modeli. Użyte techniki to m.in.:
@@ -203,6 +203,7 @@ Aby utrzymać jakość modelu na produkcji, zaleca się comiesięczny monitoring
 1.  **PSI (Population Stability Index):** Alarm, jeśli PSI > 0.1 (oznacza zmianę profilu klientów).
 2.  **Analiza Vintage:** Porównanie `Expected PD` vs `Realized DR` po 3, 6, 9, 12 miesiącach.
 3.  **Koncentracja klas:** Monitorowanie odsetka klientów wpadających do klasy `R` (nagły wzrost oznaczaalby zbyt restrykcyjną politykę lub pogorszenie jakości wniosków).
+
 
 
 
