@@ -111,12 +111,6 @@ Model surowy został poddany kalibracji metodą **[Platt Scaling]** na zbiorze w
 | **R (Reject)** | Odrzucenie (Cut-off) | **9.18%** |
 
 
-
-
-
-
-
-
 ---
 
 ## 5. Wyjaśnialność (Explainability & Interpretability)
@@ -125,6 +119,7 @@ Model surowy został poddany kalibracji metodą **[Platt Scaling]** na zbiorze w
 ![Wykres ważności cech (udział logitów)](images/Reg/importance_regression.png)
 
 Ponadto sprofilowany bin dla wskaźnika mnożnika kapitału własnego:
+
 | Przedział_Biznesowy | WoE |
 | :--- | :--- |
 | **(-inf, 1.04]** | -0.146603 |
@@ -132,6 +127,7 @@ Ponadto sprofilowany bin dla wskaźnika mnożnika kapitału własnego:
 | **(1.30, 1.81]** | -0.744440 |
 | **(1.81, 3.23]** | -0.085825 |
 | **(3.23, inf]** | 0.725235 |
+
 Widać zależność nieliniową - najbardziej ryzyko jest obniżono dla przedziału (1.04, 1.81) a dla skrajnych gorzej, w szczególności najbardziej ryzykowne są firmy z wysokim wskaźnikiem. 
 Pozostałe zmienne: 
 * Aktywa trwałe - im większe, tym mniejsze ryzyko kredytowe
@@ -148,7 +144,8 @@ Analiza **SHAP Feature Importance** wskazała 5 kluczowych cech:
 
 ### Lokalna (Dlaczego ten klient?) - regresja logistyczna
 Przeprowadzono analizę przypadków (Case Studies) przy użyciu interpretacji logitów oraz analizy what-if:
-* **Przypadek graniczny:** 
+* **Przypadek graniczny:**
+  
 | Zmienna | Wartość Oryginalna | Wartość WOE | Waga Modelu (Beta) | Wkład (Logit) |
 | :--- | :--- | :--- | :--- | :--- |
 | **wsk_mnoznik_kap_wl** | 5.99784 | 0.725235 | 1.141125 | 0.827584 |
@@ -158,9 +155,10 @@ Przeprowadzono analizę przypadków (Case Studies) przy użyciu interpretacji lo
 | **wsk_poziom_kapitalu_obrotowego_netto** | 168,278.04 | 0.131028 | 0.592846 | 0.077680 |
 | **wsk_zwrot_aktywa_trwale** | 31,060.57 | 0.080247 | 0.562389 | 0.045130 |
 
-Przewidziane prawdopodobieństwo defaultu dla klienta to 6.9134%. Klientów klasyfikujemy jako takich, którzy spłacą poniżej 6.1%. Na podstawie analizy what-if widać, że po zmianie wskaźniku kapitału własnego poniżej 3.2 klient wpada do "lepszego koszyka". Zmienia to jego prawdopodobieństwo na 3.8219%.
+Przewidziane prawdopodobieństwo defaultu dla klienta to 6.9134%. Klientów klasyfikujemy jako takich, którzy spłacą poniżej 6.1%. Na podstawie analizy what-if widać, że po zmianie wskaźniku kapitału własnego poniżej 3.2 klient wpada do "lepszego koszyka". Zmienia to jego prawdopodobieństwo na 3.8219%, co powoduje zmianę decyzji.
 
 * **Przypadek graniczny2:** Klient, któremu udzielamy kredytu, ale wymaga monitoringu
+  
 | Zmienna | Wartość Oryginalna | Wartość WOE | Waga Modelu (Beta) | Wkład (Logit) |
 | :--- | :--- | :--- | :--- | :--- |
 | **koszty_operacyjne** | 7,526.00 | 0.535244 | 0.574498 | 0.307497 |
@@ -173,6 +171,7 @@ Przewidziane prawdopodobieństwo defaultu dla klienta to 6.9134%. Klientów klas
 Przewidziane prawdopodobieństwo: 5.7179%, jednak po zmianie na wskaźnika poziomu kapitału obrotowego netto na 9500 (ok. poniżej 10000) spada w gorszy próg, co spowoduje klasyfikację jako default.
 
 * **Przypadek neutralny z klientem, który wygląda bezpiecznie**:
+  
 | Zmienna | Wartość Oryginalna | Wartość WOE | Waga Modelu (Beta) | Wkład (Logit) |
 | :--- | :--- | :--- | :--- | :--- |
 | **koszty_operacyjne** | 11,754,746.28 | -0.693147 | 0.574498 | -0.398212 |
@@ -212,6 +211,7 @@ Aby utrzymać jakość modelu na produkcji, zaleca się comiesięczny monitoring
 1.  **PSI (Population Stability Index):** Alarm, jeśli PSI > 0.1 (oznacza zmianę profilu klientów).
 2.  **Analiza Vintage:** Porównanie `Expected PD` vs `Realized DR` po 3, 6, 9, 12 miesiącach.
 3.  **Koncentracja klas:** Monitorowanie odsetka klientów wpadających do klasy `R` (nagły wzrost oznaczaalby zbyt restrykcyjną politykę lub pogorszenie jakości wniosków).
+
 
 
 
