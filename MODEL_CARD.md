@@ -27,7 +27,7 @@ Projekt obejmuje dwa niezależne preprocessingi dla obu różnych modeli. Użyte
     * Braki danych: Imputacja medianą zmiennych numerycznych i modą zmiennych kategorycznych.
     * Outliery: Capping na poziomie [np. 1-99 percentyla] oraz IQR (w zależności od procentu braków).
     * Inżynieria cech: Przekształcenia logarytmiczne, Binning zmiennych ciągłych (WoE) z wymuszeniem monotoniczności (dla regresji).
-    * Selekcja cech: Testy monotniczności, VIF, usuwanie zmiennych skorelowanych
+    * Selekcja cech: Testy monotniczności, VIF, usuwanie zmiennych skorelowanych, usuwanie zmiennych dających niskie feature importance
 
 ---
 
@@ -44,7 +44,7 @@ W projekcie porównano dwa podejścia:
 
 ---
 
-## 4. Wyniki i Kalibracja (Performance - regresja)
+## 4.1 Wyniki i Kalibracja (Performance - regresja)
 
 ### Metryki skuteczności (Zbiór Testowy) - regresja, model finalny po kalibracj i dostrojeniu progu decyzyjnego
 | Metryka | Train | Validation | Test |
@@ -55,14 +55,14 @@ W projekcie porównano dwa podejścia:
 | **Log-loss** | 0.3014 | 0.3052 | 0.3093 |
 
 ### Kalibracja (Calibration to 4%)
-Model surowy został poddany kalibracji metodą **[Platt Scaling]** na zbiorze walidacyjnym i następnie oceniony na zbiorze testowym, aby wyrównać średnie przewidywane ryzyko do rzeczywistego poziomu w portfelu (4%). Następnie dostrojony został intercept.
+Model surowy został poddany kalibracji metodą **[Platt Scaling]** na zbiorze walidacyjnym i następnie oceniony na zbiorze testowym, aby wyrównać średnie przewidywane ryzyko do zakładanego poziomu w portfelu (4%). Następnie dostrojony został intercept.
 
 * **Brier Score (przed kalibracją):** 0.08029
 * **Brier Score (po kalibracji):** 0.08117
 * **ECE po kalibracji na zbiorze testowym**: 0.0497
 * **ACE po kalibracji na zbiorze testowym**: 0.0493
 
-![Wykres Kalibracji](images/calibration_post_regression.png)
+![Wykres Kalibracji](images/Reg/ecalibration_post_regression.png)
 
 Na końcu zminimalizowano funkcję kosztu TP/FP tak, aby odpowiadała założonym stratom. Szczegóły w prezentacji.
 
@@ -75,6 +75,10 @@ Ze względu na niską liczebność próby testowej, przyjęto **3-stopniową ska
 | **B (Prime)** | Akceptacja (Standard) | **~1.8%** |
 | **C (High Risk)** | Weryfikacja (Manual/Dodatkowe zabezpieczenie) | **~8.6%** |
 | **R (Reject)** | Odrzucenie (Cut-off) | **>20.0%** |
+
+
+## 4.2  Wyniki i Kalibracja (Performance - black box)
+
 
 ---
 
@@ -159,3 +163,4 @@ Aby utrzymać jakość modelu na produkcji, zaleca się comiesięczny monitoring
 1.  **PSI (Population Stability Index):** Alarm, jeśli PSI > 0.1 (oznacza zmianę profilu klientów).
 2.  **Analiza Vintage:** Porównanie `Expected PD` vs `Realized DR` po 3, 6, 9, 12 miesiącach.
 3.  **Koncentracja klas:** Monitorowanie odsetka klientów wpadających do klasy `R` (nagły wzrost oznaczaalby zbyt restrykcyjną politykę lub pogorszenie jakości wniosków).
+
