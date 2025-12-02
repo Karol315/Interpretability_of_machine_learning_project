@@ -147,8 +147,8 @@ Pozostałe zmienne:
 ### Globalna (Co napędza model?) - BlackBox
 Analiza **SHAP Feature Importance** wskazała 5 kluczowych cech:
 1.  **wsk_struktury_kapitalu:** niskie wartości sprzyjają wykrywaniu defaultów.
-2.  **wsk_finansowania_majatku_kapitalem:** wysokie wartości zmniejszają prawdopodobieństwo defaultu
-3.  **wsk_mnoznik_kap_wl:** wysokie wartości zwiększają prawdopodobieństwo defaultu
+2.  **zysk_netto:** wysokie wartości zmniejszają prawdopodobieństwo defaultu - zarabiające na siebie podmioty
+3.  **wsk_ogolnego_zadluzenia_1:** wysokie wartości zwiększają prawdopodobieństwo defaultu
 
 ![shap global](images/BlackBox/shap_summary.png)
 
@@ -223,6 +223,7 @@ Aby utrzymać jakość modelu na produkcji, zaleca się comiesięczny monitoring
 1.  **PSI (Population Stability Index):** Alarm, jeśli PSI > 0.1 (oznacza zmianę profilu klientów).
 2.  **Analiza Vintage:** Porównanie `Expected PD` vs `Realized DR` po 3, 6, 9, 12 miesiącach.
 3.  **Koncentracja klas:** Monitorowanie odsetka klientów wpadających do klasy `R` (nagły wzrost oznaczaalby zbyt restrykcyjną politykę lub pogorszenie jakości wniosków).
+
 
 
 
